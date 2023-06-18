@@ -1,0 +1,13 @@
+.scrollbar-container {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.container::-webkit-box {
+    height: 150;
+    margin-top: 50;
+    box-height: 60px;
+}

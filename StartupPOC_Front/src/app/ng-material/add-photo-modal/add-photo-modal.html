@@ -1,0 +1,44 @@
+<mat-dialog-content class="mat-typography">
+<div class="flex flex-col justify-center items-center w-full h-full p-1 text-purple-600 bg-purple-100 border border-purple-600 rounded-lg scrollbar-container">
+    <div class="text-center">
+        <div class="container mt-2 text-center">
+          <div class="flex flex-row justify-between px-2 py-2 ">
+             <div style="width:70%">
+                <input class="form-control  ml-2" type="file" accept="image/png, image/jpeg" (change)="onFileChange($event)" />
+             </div>
+             <div style="width:30%">
+               <button (click)="onSubmit()" 
+                    class="btn btn-success">
+                    Upload
+               </button>
+             </div>
+          </div>
+          <div style="margin-left:20%" class="col-md-8">
+            <image-cropper 
+              [imageChangedEvent]="imgChangeEvt" 
+              [maintainAspectRatio]="true" 
+              [aspectRatio]="4 / 4"
+              [resizeToWidth]="256" 
+              format="png" 
+              (imageCropped)="cropImg($event)" 
+              (imageLoaded)="imgLoad()"
+              (cropperReady)="initCropper()" 
+              (loadImageFailed)="imgFailed()">
+            </image-cropper>
+          </div>
+        </div>
+</div>
+  
+<!-- Shareable short link of  uploaded file -->
+<div class="container text-center jumbotron"
+    *ngIf="shortLink">
+    <h2> Visit Here</h2>
+    <a href="{{shortLink}}">{{shortLink}}</a>
+</div>
+  
+<!--Flag variable is used here-->
+<div class="container" *ngIf="loading">
+    <h3>Loading ...</h3>
+</div>
+</div>
+</mat-dialog-content>

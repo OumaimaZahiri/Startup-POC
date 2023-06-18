@@ -1,0 +1,122 @@
+<!-- start navbar -->
+  <header class="flex navbar navbar-expand navbar-dark bg-dark items-center h-20 px-6 sm:px-10 bg-white" routerLinkActive="active">
+    <div class="border-r pr-3 mr-3 ml-3 space-x-1">
+      <button *ngIf="showAdminBoard" href="/admin" class="nav-link" routerLink="admin" class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+        <span class="sr-only">Admin Board</span>
+        <svg fill="currentColor" viewBox="0 0 64 64" stroke="currentColor" class="h-6 w-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 20 11 C 16.686 11 14 13.686 14 17 L 14 47 C 14 50.314 16.686 53 20 53 L 48 53 C 49.105 53 50 52.105 50 51 C 50 50.225188 49.556035 49.560676 48.912109 49.228516 L 48.917969 49.224609 C 48.917969 49.224609 47 48.445625 47 46.515625 C 47 44.621625 48.199219 43.845703 48.199219 43.845703 L 48.167969 43.837891 C 49.277417 42.920723 50 41.55158 50 40 L 50 17 C 50 13.686 47.314 11 44 11 L 20 11 z M 22 15 L 44 15 C 45.105 15 46 15.895 46 17 L 46 39 C 46 40.105 45.105 41 44 41 L 22 41 L 22 15 z M 34.017578 20.013672 C 32.066578 20.013672 30.484375 21.757156 30.484375 23.910156 C 30.484375 26.063156 32.067578 27.808594 34.017578 27.808594 C 35.968578 27.808594 37.548828 26.063156 37.548828 23.910156 C 37.548828 21.757156 35.968578 20.013672 34.017578 20.013672 z M 34 29.4375 C 32.284 29.4375 30.542281 29.808234 28.738281 31.115234 C 27.901281 31.721234 26.435547 33.229844 26.435547 34.964844 C 26.435547 35.899844 27.394359 36.011719 27.693359 36.011719 L 40.306641 36.011719 C 40.605641 36.011719 41.564453 35.899844 41.564453 34.964844 C 41.564453 33.229844 40.097719 31.721234 39.261719 31.115234 C 37.457719 29.808234 35.716 29.4375 34 29.4375 z M 20 45 L 43.363281 45 C 43.150753 45.537803 43 46.190793 43 47 C 43 47.805729 43.261883 48.458893 43.626953 49 L 20 49 C 18.895 49 18 48.105 18 47 C 18 45.895 18.895 45 20 45 z" />
+        </svg>
+      </button>
+      <button *ngIf="showModeratorBoard" href="/mod" class="nav-link" routerLink="mod" class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+        <span class="sr-only">Moderator Board</span>
+        <svg fill="currentColor" viewBox="0 0 64 64" stroke="currentColor" class="h-6 w-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 23 12 C 20.243 12 18 14.243 18 17 L 18 22 L 15 22 C 12.243 22 10 24.243 10 27 L 10 46 C 10 49.309 12.691 52 16 52 L 48 52 C 51.309 52 54 49.309 54 46 L 54 17 C 54 14.243 51.757 12 49 12 L 23 12 z M 23 16 L 49 16 C 49.552 16 50 16.449 50 17 L 50 46 C 50 47.103 49.103 48 48 48 L 21.65625 48 C 21.87825 47.374 22 46.701 22 46 L 22 17 C 22 16.449 22.448 16 23 16 z M 27 20 C 25.896 20 25 20.895 25 22 C 25 23.105 25.896 24 27 24 L 45 24 C 46.104 24 47 23.105 47 22 C 47 20.895 46.104 20 45 20 L 27 20 z M 15 26 L 18 26 L 18 46 C 18 47.103 17.103 48 16 48 C 14.897 48 14 47.103 14 46 L 14 27 C 14 26.449 14.448 26 15 26 z M 27 27 C 25.896 27 25 27.895 25 29 C 25 30.105 25.896 31 27 31 L 45 31 C 46.104 31 47 30.105 47 29 C 47 27.895 46.104 27 45 27 L 27 27 z M 27 34 C 25.895 34 25 34.895 25 36 L 25 43 C 25 44.105 25.895 45 27 45 L 33 45 C 34.105 45 35 44.105 35 43 L 35 36 C 35 34.895 34.105 34 33 34 L 27 34 z M 40 34 C 38.896 34 38 34.895 38 36 C 38 37.105 38.896 38 40 38 L 45 38 C 46.104 38 47 37.105 47 36 C 47 34.895 46.104 34 45 34 L 40 34 z M 40 41 C 38.896 41 38 41.895 38 43 C 38 44.105 38.896 45 40 45 L 45 45 C 46.104 45 47 44.105 47 43 C 47 41.895 46.104 41 45 41 L 40 41 z" />
+        </svg>
+      </button>
+      <button href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user" class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+        <span class="sr-only">User</span>
+        <svg fill="currentColor" viewBox="0 0 64 64" stroke="currentColor" class="h-6 w-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 32 9 C 20.491 9 13 15.577 13 27 L 13 32 C 13 32 12 33.853 12 36 C 12 38.875 14.338 41.181 16 42 C 17.896 49.908 27 55 32 55 C 37 55 46.104 49.908 48 42 C 49.662 41.181 52 38.521484 52 35.646484 C 52 33.499484 51 32 51 32 L 51 27 C 51 13.514 41.337891 12.755859 41.337891 12.755859 C 41.337891 12.755859 38.481 9 32 9 z M 32 13 C 38.061 13 39.015625 16.664062 39.015625 16.664062 C 39.015625 16.664062 47 17.226 47 27 L 47 31 L 46.646484 31 C 45.727484 26.963 43.18775 21.941516 38.46875 20.603516 C 38.46875 20.603516 33.877203 27.527 19.658203 27 L 17.658203 31 L 17 31 L 17 27 C 17 18.103 22.467 13 32 13 z M 39.410156 25.566406 C 40.926156 26.924406 43.471625 31.759 43.515625 35 L 47.9375 35 C 47.974063 35.201126 48 35.412486 48 35.646484 C 48 37.852484 44.548828 39.242188 44.548828 39.242188 C 44.548828 45.865187 35.417 51 32 51 C 28.583 51 19.451172 45.470188 19.451172 39.242188 C 19.451172 39.242187 16 38.248 16 36 C 16 35.630822 16.04428 35.30424 16.103516 35 L 20.132812 35 L 22.136719 30.990234 C 30.647719 30.858234 35.607156 29.322406 39.410156 25.566406 z" />
+        </svg>
+      </button>
+      <button href="/projects" class="nav-link" *ngIf="showAdminBoard" routerLink="projects" class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+        <span class="sr-only">Projects</span>
+        <svg fill="currentColor" viewBox="0 0 64 64" stroke="currentColor" class="h-6 w-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 32 9 C 19.317 9 9 19.318 9 32 C 9 44.682 19.317 55 32 55 C 44.683 55 55 44.682 55 32 C 55 19.318 44.683 9 32 9 z M 32 13 C 42.477 13 51 21.523 51 32 C 51 42.477 42.477 51 32 51 C 21.523 51 13 42.477 13 32 C 13 21.523 21.523 13 32 13 z M 32 17 C 23.729 17 17 23.729 17 32 C 17 40.271 23.729 47 32 47 C 40.271 47 47 40.271 47 32 C 47 23.729 40.271 17 32 17 z M 32 21 C 38.065 21 43 25.935 43 32 C 43 38.065 38.065 43 32 43 C 25.935 43 21 38.065 21 32 C 21 25.935 25.935 21 32 21 z M 32 24.25 L 29.591797 29.128906 L 24.208984 29.910156 L 28.105469 33.707031 L 27.185547 39.068359 L 32 36.537109 L 36.814453 39.068359 L 35.894531 33.707031 L 39.791016 29.910156 L 34.408203 29.128906 L 32 24.25 z"></path>
+        </svg>
+      </button>
+    </div>
+    
+
+    <div class="flex flex-shrink-0 items-center ml-auto" *ngIf="isLoggedIn">
+      <div class="flex flex-row-reverse items-center">
+      <!-- user -->
+      <div class="dropdown relative"  (mouseenter) ="OnUserFrameChange()"  (mouseleave) ="OnUserFrameChange()">
+        <a class="nav-link" >
+          <button class="inline-flex items-center p-2 hover:bg-gray-100 focus:bg-gray-100 rounded-lg">
+            <span class="sr-only">User Menu</span>
+            <div class="hidden md:flex md:flex-col md:items-end md:leading-tight">
+              <span class="font-semibold">Télécom Saint Etienne</span>
+              <span class="text-sm text-gray-600 font-semibold">{{ roles }}</span>
+            </div>
+            <span class="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
+              <img src="../assets/img/sigle_telecom.png" alt="user profile photo" class="h-full w-full object-cover">
+            </span>
+            <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" class="hidden sm:block h-6 w-6 text-gray-300">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </a>
+        <div *ngIf="userframechange" class="text-gray-500 menu md:pt-10 md:w-full rounded bg-white shadow-md absolute z-20 right-0 w-40 pt-2 py-2 animated faster"> 
+          <!-- item -->
+          <a  *ngIf="showAdminBoard" href="/admin" class="nav-link" routerLink="admin" class="flex flex-row px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="#">
+              <svg fill="currentColor" viewBox="0 0 64 64" stroke="currentColor" class="h-6 w-6 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 20 11 C 16.686 11 14 13.686 14 17 L 14 47 C 14 50.314 16.686 53 20 53 L 48 53 C 49.105 53 50 52.105 50 51 C 50 50.225188 49.556035 49.560676 48.912109 49.228516 L 48.917969 49.224609 C 48.917969 49.224609 47 48.445625 47 46.515625 C 47 44.621625 48.199219 43.845703 48.199219 43.845703 L 48.167969 43.837891 C 49.277417 42.920723 50 41.55158 50 40 L 50 17 C 50 13.686 47.314 11 44 11 L 20 11 z M 22 15 L 44 15 C 45.105 15 46 15.895 46 17 L 46 39 C 46 40.105 45.105 41 44 41 L 22 41 L 22 15 z M 34.017578 20.013672 C 32.066578 20.013672 30.484375 21.757156 30.484375 23.910156 C 30.484375 26.063156 32.067578 27.808594 34.017578 27.808594 C 35.968578 27.808594 37.548828 26.063156 37.548828 23.910156 C 37.548828 21.757156 35.968578 20.013672 34.017578 20.013672 z M 34 29.4375 C 32.284 29.4375 30.542281 29.808234 28.738281 31.115234 C 27.901281 31.721234 26.435547 33.229844 26.435547 34.964844 C 26.435547 35.899844 27.394359 36.011719 27.693359 36.011719 L 40.306641 36.011719 C 40.605641 36.011719 41.564453 35.899844 41.564453 34.964844 C 41.564453 33.229844 40.097719 31.721234 39.261719 31.115234 C 37.457719 29.808234 35.716 29.4375 34 29.4375 z M 20 45 L 43.363281 45 C 43.150753 45.537803 43 46.190793 43 47 C 43 47.805729 43.261883 48.458893 43.626953 49 L 20 49 C 18.895 49 18 48.105 18 47 C 18 45.895 18.895 45 20 45 z" />
+              </svg>
+            Admin Board
+          </a>
+          <!-- end item -->
+          <!-- item -->
+          <a *ngIf="showModeratorBoard" href="/mod" class="nav-link" routerLink="mod" class="flex flex-row px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="#"> 
+            <svg fill="currentColor" viewBox="0 0 64 64" stroke="currentColor" class="h-6 w-6 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 23 12 C 20.243 12 18 14.243 18 17 L 18 22 L 15 22 C 12.243 22 10 24.243 10 27 L 10 46 C 10 49.309 12.691 52 16 52 L 48 52 C 51.309 52 54 49.309 54 46 L 54 17 C 54 14.243 51.757 12 49 12 L 23 12 z M 23 16 L 49 16 C 49.552 16 50 16.449 50 17 L 50 46 C 50 47.103 49.103 48 48 48 L 21.65625 48 C 21.87825 47.374 22 46.701 22 46 L 22 17 C 22 16.449 22.448 16 23 16 z M 27 20 C 25.896 20 25 20.895 25 22 C 25 23.105 25.896 24 27 24 L 45 24 C 46.104 24 47 23.105 47 22 C 47 20.895 46.104 20 45 20 L 27 20 z M 15 26 L 18 26 L 18 46 C 18 47.103 17.103 48 16 48 C 14.897 48 14 47.103 14 46 L 14 27 C 14 26.449 14.448 26 15 26 z M 27 27 C 25.896 27 25 27.895 25 29 C 25 30.105 25.896 31 27 31 L 45 31 C 46.104 31 47 30.105 47 29 C 47 27.895 46.104 27 45 27 L 27 27 z M 27 34 C 25.895 34 25 34.895 25 36 L 25 43 C 25 44.105 25.895 45 27 45 L 33 45 C 34.105 45 35 44.105 35 43 L 35 36 C 35 34.895 34.105 34 33 34 L 27 34 z M 40 34 C 38.896 34 38 34.895 38 36 C 38 37.105 38.896 38 40 38 L 45 38 C 46.104 38 47 37.105 47 36 C 47 34.895 46.104 34 45 34 L 40 34 z M 40 41 C 38.896 41 38 41.895 38 43 C 38 44.105 38.896 45 40 45 L 45 45 C 46.104 45 47 44.105 47 43 C 47 41.895 46.104 41 45 41 L 40 41 z" />
+            </svg>
+            Moderator Board
+          </a>
+          <!-- end item -->
+           <!-- item -->
+          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user" class="flex flex-row px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="/user"> 
+            <svg fill="currentColor" viewBox="0 0 64 64" stroke="currentColor" class="h-6 w-6 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 32 9 C 20.491 9 13 15.577 13 27 L 13 32 C 13 32 12 33.853 12 36 C 12 38.875 14.338 41.181 16 42 C 17.896 49.908 27 55 32 55 C 37 55 46.104 49.908 48 42 C 49.662 41.181 52 38.521484 52 35.646484 C 52 33.499484 51 32 51 32 L 51 27 C 51 13.514 41.337891 12.755859 41.337891 12.755859 C 41.337891 12.755859 38.481 9 32 9 z M 32 13 C 38.061 13 39.015625 16.664062 39.015625 16.664062 C 39.015625 16.664062 47 17.226 47 27 L 47 31 L 46.646484 31 C 45.727484 26.963 43.18775 21.941516 38.46875 20.603516 C 38.46875 20.603516 33.877203 27.527 19.658203 27 L 17.658203 31 L 17 31 L 17 27 C 17 18.103 22.467 13 32 13 z M 39.410156 25.566406 C 40.926156 26.924406 43.471625 31.759 43.515625 35 L 47.9375 35 C 47.974063 35.201126 48 35.412486 48 35.646484 C 48 37.852484 44.548828 39.242188 44.548828 39.242188 C 44.548828 45.865187 35.417 51 32 51 C 28.583 51 19.451172 45.470188 19.451172 39.242188 C 19.451172 39.242187 16 38.248 16 36 C 16 35.630822 16.04428 35.30424 16.103516 35 L 20.132812 35 L 22.136719 30.990234 C 30.647719 30.858234 35.607156 29.322406 39.410156 25.566406 z" />
+            </svg>
+            User
+          </a>
+          <!-- end item -->
+           <!-- item -->
+          <a href="/projects" class="nav-link" *ngIf="showAdminBoard" routerLink="projects" class="flex flex-row px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="/projects"> 
+            <svg fill="currentColor" viewBox="0 0 64 64" stroke="currentColor" class="h-6 w-6 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 32 9 C 19.317 9 9 19.318 9 32 C 9 44.682 19.317 55 32 55 C 44.683 55 55 44.682 55 32 C 55 19.318 44.683 9 32 9 z M 32 13 C 42.477 13 51 21.523 51 32 C 51 42.477 42.477 51 32 51 C 21.523 51 13 42.477 13 32 C 13 21.523 21.523 13 32 13 z M 32 17 C 23.729 17 17 23.729 17 32 C 17 40.271 23.729 47 32 47 C 40.271 47 47 40.271 47 32 C 47 23.729 40.271 17 32 17 z M 32 21 C 38.065 21 43 25.935 43 32 C 43 38.065 38.065 43 32 43 C 25.935 43 21 38.065 21 32 C 21 25.935 25.935 21 32 21 z M 32 24.25 L 29.591797 29.128906 L 24.208984 29.910156 L 28.105469 33.707031 L 27.185547 39.068359 L 32 36.537109 L 36.814453 39.068359 L 35.894531 33.707031 L 39.791016 29.910156 L 34.408203 29.128906 L 32 24.25 z"></path>
+            </svg>
+            Projects
+          </a>
+          <!-- end item -->
+          <hr>
+          <!-- item -->
+          <a href class="flex flex-row px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" (click)="logout()">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 mr-2">
+              <path d="M 32 9 C 19.317 9 9 19.318 9 32 C 9 44.682 19.317 55 32 55 C 44.683 55 55 44.682 55 32 C 55 19.318 44.683 9 32 9 z M 32 13 C 42.477 13 51 21.523 51 32 C 51 42.477 42.477 51 32 51 C 21.523 51 13 42.477 13 32 C 13 21.523 21.523 13 32 13 z M 32 17 C 23.729 17 17 23.729 17 32 C 17 40.271 23.729 47 32 47 C 40.271 47 47 40.271 47 32 C 47 23.729 40.271 17 32 17 z M 32 21 C 38.065 21 43 25.935 43 32 C 43 38.065 38.065 43 32 43 C 25.935 43 21 38.065 21 32 C 21 25.935 25.935 21 32 21 z M 32 24.25 L 29.591797 29.128906 L 24.208984 29.910156 L 28.105469 33.707031 L 27.185547 39.068359 L 32 36.537109 L 36.814453 39.068359 L 35.894531 33.707031 L 39.791016 29.910156 L 34.408203 29.128906 L 32 24.25 z"></path>
+            </svg>
+            <p class="mt-2">log out</p>
+          </a>
+          <!-- end item -->
+        </div>
+      </div>
+      <!-- end user -->
+    </div>
+
+    </div>
+    <!-- end right  if is login-->
+    <div class="border-l pl-3 ml-3 space-x-1" *ngIf="isLoggedIn">
+        <button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full" (click)="logout()">
+          <span class="sr-only">Log out</span>
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+        </button>
+     </div>
+
+     <!-- end right if not login -->
+    <div class="flex flex-shrink-0 items-center ml-auto border-l pl-3 ml-3 space-x-1" *ngIf="!isLoggedIn">
+        <button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full" href="/register" routerLink="register">
+          <span class="sr-only">Sign Up</span>
+          <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
+          <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
+          Sign Up
+        </button>
+        <button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full" href="/login" routerLink="login">
+          <span class="sr-only">Login</span>
+          Login
+        </button>
+     </div>
+  </header>
+  <!-- end navbar -->

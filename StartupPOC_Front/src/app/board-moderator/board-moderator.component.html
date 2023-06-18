@@ -1,0 +1,140 @@
+<div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between bg-white shadow rounded-lg p-4">
+  <div class="mr-6 m-2">
+    <span class="text-2xl font-bold">Dashboard Manager</span>
+  </div>
+  <div class="flex flex-wrap items-start justify-end -mb-3">
+      <div class="dropdown relative"  (mouseenter) ="OnUserFrameChange()"  (mouseleave) ="OnUserFrameChange()">
+        <button class="inline-flex px-5 py-3 p-1 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Add new member
+        </button>
+        <div *ngIf="userframechange"  (click)="setTabValue('user'); openDialog();" class="text-gray-500 menu md:pt-10 md:w-full rounded bg-white shadow-md absolute z-20 right-0 w-30 pt-2 py-2 animated faster"> 
+          <div class="nav-link" routerLink="home" class="flex flex-row px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            Add Member
+          </div>
+        </div>
+      </div>
+      <!-- end user -->
+  </div>
+</div>
+<section class="grid md:grid-cols-2 xl:grid-cols-5 gap-6 mt-5 mb-5">
+  <div (click)="setTabValue('user')" class="bg-white shadow rounded-lg">
+    <button class="flex flex-row justify-center items-center w-full h-full px-5 py-3 p-1 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-lg">
+      <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6">
+        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      </div>
+      <div>
+        <!--<span class="block text-2xl font-bold" style="color:red">56</span>-->
+        <span class="block text-gray-500 font-semibold">Members</span>
+      </div>
+    </button>
+  </div>
+  <div (click)="setTabValue('manager')" class="bg-white shadow rounded-lg">
+    <button class="flex flex-row justify-center items-center w-full h-full px-5 py-3 p-1 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-lg">
+      <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600 bg-yellow-100 rounded-full mr-6">
+        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+          <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path fill="#fff" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+        </svg>
+      </div>
+      <div>
+        <span class="block text-gray-500 font-semibold">Manager</span>
+      </div>
+    </button>
+  </div>
+</section>
+<section class="flex flex-col gap-6">
+  <div *ngIf="tabvalue=='user'" class="row-span-3 bg-white shadow rounded-lg">
+    <div class="flex items-center justify-between px-4 py-3 font-semibold border-b border-gray-100">
+      <span class="text-lg">Members of the Team</span>
+      <div class="flex flex-row">
+        <button (click)="setTabValue('user'); openDialog();" class="inline-flex px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md mr-6">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Add New Member
+        </button>
+        <button type="button"
+          class="inline-flex justify-center rounded-md px-1 -mr-1 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-600 mt-2"
+          id="options-menu" aria-haspopup="true" aria-expanded="true" (click)="sortbyname(users)">
+          Ascending
+          <svg class="-mr-1 ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="overflow-y-auto" style="max-height: 24rem;">
+      <ul class="p-6 space-y-6">
+        <li class="grid md:grid-cols-5 xl:grid-cols-5" *ngFor="let user of users let index=index">
+          <div *ngIf="!user.photos" class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+            <img src="https://picsum.photos/id/{{index+1}}/200">
+          </div>
+          <div *ngIf="user.photos" class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+            <img src="http://localhost:8080/src/main/resources/user-photos/{{user.id}}/{{user.photos}}">
+          </div>
+          <span class="text-gray-600 m-2">{{user.firstname}}</span>
+          <span class="text-gray-600 m-2">{{user.lastname}}</span>
+          <span class="text-gray-600  m-2 items-center">{{user.email}}</span>
+          <div class="font-semibold flex flex-row justify-around m-2 w-full">
+            <a [routerLink]="['/calendar']" [queryParams]="{ id: user.id}"><svg _ngcontent-knw-c104="" xmlns="http://www.w3.org/2000/svg" fill="#5c6bc0" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 stroke-current"><path _ngcontent-knw-c104="" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></a>
+            <button (click)="deleteMember(user.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+              width="25" height="25"
+              viewBox="0 0 48 48">
+              <path fill="#9fa8da" d="M12,13v25c0,2.2,1.8,4,4,4h16c2.2,0,4-1.8,4-4V13H12z"></path><path fill="#7986cb" d="M23,15h2v23h-2V15z M29,15h2v23h-2V15z M17,15h2v23h-2V15z"></path><path fill="#5c6bc0" d="M12,10h24v4H12V10z"></path><path fill="#5c6bc0" d="M10,13h28v4H10V13z M20,12V8h8v4h2V8c0-1.1-0.9-2-2-2h-8c-1.1,0-2,0.9-2,2v4H20z"></path>
+              </svg>
+            </button>
+            <div class="circle" [ngStyle]="{'background-color': (user.loginAttemptCount ==3) ? 'red' : ((user.status == 2) ? 'orange' : '#3A9D23') }"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="tabvalue=='manager'" class="row-span-3 bg-white shadow rounded-lg">
+    <div class="flex items-center justify-between px-4 py-3 font-semibold border-b border-gray-100">
+      <span class="text-lg">Managers</span>
+      <div class="flex flex-row">
+        <button type="button"
+          class="inline-flex justify-center rounded-md px-1 -mr-1 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-600 mt-2"
+          id="options-menu" aria-haspopup="true" aria-expanded="true">
+          Ascending
+          <svg class="-mr-1 ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="overflow-y-auto" style="max-height: 24rem;">
+      <ul class="p-6 space-y-6">
+        <li class="grid md:grid-cols-5 xl:grid-cols-5">
+          <div *ngIf="!manager.photos" class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+            <img src="https://picsum.photos/id/6/200">
+          </div>
+          <div *ngIf="manager.photos" class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+            <img src="http://localhost:8080/src/main/resources/user-photos/{{manager.id}}/{{manager.photos}}">
+          </div>
+          <span class="text-gray-600 m-2">{{manager.firstname}}</span>
+          <span class="text-gray-600 m-2">{{manager.lastname}}</span>
+          <span class="text-gray-600  m-2 items-center">{{manager.email}}</span>
+          <div class="font-semibold flex flex-row justify-around m-2 w-full">
+            
+            <div class="circle" [ngStyle]="{'background-color': (manager.loginAttemptCount ==3) ? 'red' : ((manager.status == 2) ? 'orange' : '#3A9D23') }"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

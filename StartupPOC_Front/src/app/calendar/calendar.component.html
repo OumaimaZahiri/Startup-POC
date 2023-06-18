@@ -1,0 +1,14 @@
+<div class="bg-white shadow rounded-lg">
+  <div class="px-4 py-3 font-semibold border-b border-gray-100">
+    <div class='calendar'>
+      <div class='calendar-main'>
+        <full-calendar #calendar *ngIf='calendarVisible' [options]='calendarOptions' [events]="events" >
+          <ng-template #eventContent let-arg>
+            <b>{{ arg.timeText }}</b>
+            <i>{{ arg.event.title }}</i>
+          </ng-template>
+        </full-calendar>
+      </div>
+    </div>
+  </div>
+</div>

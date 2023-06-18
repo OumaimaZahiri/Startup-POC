@@ -1,0 +1,269 @@
+<!-- Top panel project management -->
+<div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between bg-white shadow rounded-lg p-4">
+  <div class="mr-6 m-2">
+    <span class="text-2xl font-bold">Project Management</span>
+  </div>
+  <div class="flex flex-wrap items-start justify-end -mb-3">
+      <div class="dropdown relative"  (mouseenter) ="OnUserFrameChange()"  (mouseleave) ="OnUserFrameChange()">
+        <button class="inline-flex px-5 py-3 p-1 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Add new Projects
+        </button>
+        <div *ngIf="userframechange"  (click)="setTabValue('new_project'); clearProject()" class="text-gray-500 menu md:pt-10 md:w-full rounded bg-white shadow-md absolute z-20 right-0 w-30 pt-2 py-2 animated faster"> 
+          <div class="nav-link" routerLink="home" class="flex flex-row px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            Add Projects
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<!-- End top panel project management -->
+
+<section class="flex flex-row gap-6 mt-5 mb-5 gap-6">
+  <!-- Sidebar to select a project in project list-->
+  <div class="flex-none bg-white shadow rounded-lg">
+    <div class="flex flex-row items-center justify-around px-4 py-3 font-semibold border-b border-gray-100">
+      <div><span class="text-lg mr-6">Projects</span></div>
+      <div class="flex flex-row">
+        <button (click)="setTabValue('new_project'); clearProject()" class="inline-flex px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Add New Projects
+        </button>
+      </div>
+    </div>
+    <div>
+        <div class="p-3">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+            </div>
+            <input type="text" class="form-control pl-5" id="search-text" aria-describedby="search-text" 
+              [(ngModel)]="searchText" placeholder="Search" 
+              autofocus>
+          </div>
+        </div>
+      <div class="overflow-y-auto scrollbar-container"  style="max-height: 20rem;">
+        <ul class="px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200 scrollbar-container" aria-labelledby="dropdownSearchButton">
+          <li class="list-group-item" *ngFor="let project of projects | appFilter: searchText; let index=index">
+            <div (click)="setTabValue('projects'); setProject(project); setTimeSheet(index);" class="w-full flex justify-left items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+              <label for="checkbox-item-11" class=" ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{project.title}}</label>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Sidebar-->
+  
+  <!-- Panel project to see project info-->
+  <div *ngIf="tabvalue=='projects'" class="w-full bg-white shadow rounded-lg">
+    <div class="flex flex-row items-center justify-around px-4 py-3 font-semibold border-b border-gray-100">
+      <div><span class="text-lg mr-6">{{project.title}}</span></div>
+    </div>
+    <div class="overflow-y-auto bg-gray-100 m-2">
+      <div class="m-3 text-gray-700 bg-white shadow p-10">
+        <p class="font-semibold text-gray-300 mb-10">INFORMATION</p>
+        <div class="flex flex-col text-center">
+                  <span class="font-semibold text-gray-500">Description</span>
+                  <p class="font-bold text-center">{{project.description}}</p>
+        </div>
+        <div class="grid grid-cols-3 items-left text-center" >
+              <div class="flex flex-col items-left">
+                  <span class="font-semibold text-gray-500">Starting Date</span>
+                  <p class="font-bold">{{project.startingDate}}</p>
+              </div>
+              <div class="flex flex-col items-left">
+                  <span class="font-semibold text-gray-500">Estimated Time</span>
+                  <p class="font-bold">{{project.estimatedTime}}</p>
+              </div>
+              <div class="flex flex-col items-left">
+                  <span class="font-semibold text-gray-500">Time Spent</span>
+                  <p class="font-bold">{{project.timeSpent}}</p>
+              </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-row justify-around px-4 py-3 font-semibold border-t border-gray-100">
+        <button (click)="setTabValue('edit');" class="inline-flex px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6">
+          Edit Project
+        </button>
+        <button (click)="setTabValue('time_inputs');" class="inline-flex px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6">
+          Add Timesheet
+        </button>
+    </div>
+  </div>
+  <!-- End Panel-->
+  <!-- Panel Timesheet to add timesheet-->
+  <div *ngIf="tabvalue=='time_inputs'" class="w-full  bg-white shadow rounded-lg">
+    <div class="flex items-center justify-between px-4 py-3 font-semibold border-b border-gray-100">
+      <span class="text-lg">Timesheets</span>
+      
+    </div>
+      <div class="grid grid-cols-2 overflow-y-auto bg-gray-100 m-2 bg-white shadow">
+          <div class="m-3 text-gray-700 p-10">
+            <form
+            name="form_timesheet"
+            (ngSubmit)="f.form.valid && onSubmitTimeSheet()"
+            #f="ngForm"
+            novalidate>
+              <div class="form-group" >
+                <label for="title">Title</label>
+                <select name="title" class="form-control" [(ngModel)]="form_timesheet.title" required #title="ngModel">
+                  <option value="" selected disabled>--Please choose an option--</option>
+                  <option *ngFor="let project of projects; let index=index" value="{{project.id}}">{{project.title}}</option>
+                </select>
+                <div class="alert-danger" *ngIf="title.errors && f.submitted">
+                  <div *ngIf="title.errors.required">Title is required</div>
+                  <div *ngIf="title.errors.minlength">
+                    Title must be at least 3 characters
+                  </div>
+                  <div *ngIf="title.errors.maxlength">
+                    Title must be at most 20 characters
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date"
+                       class="form-control"
+                       name="date"
+                       [(ngModel)]="form_timesheet.date"
+                       required
+                       #date="ngModel" />
+              </div>
+              <div class="form-group">
+                <label for="timeSpent">Time Spent</label>
+                <input type="time"
+                       class="form-control"
+                       name="timeSpent"
+                       [(ngModel)]="form_timesheet.timeSpent"
+                       value=0
+                       #timeSpent="ngModel" />
+              </div>
+
+              <div class="form-group">
+                <button class="inline-flex px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md float-right mt-2">Add Timesheet</button>
+              </div>
+            </form>
+          </div>
+          <div class="m-3 p-10">         
+            <img class="w-2/3 mx-auto lg:mr-0 slide-in-botto" src="../assets/time-input.svg">
+          </div>
+      </div>
+  </div>
+  <!-- End Panel-->
+  <!-- Panel new project to add a new project-->
+  <div *ngIf="tabvalue=='edit'||tabvalue=='new_project'" class="w-full  bg-white shadow rounded-lg">
+    <div class="flex items-center justify-between px-4 py-3 font-semibold border-b border-gray-100">
+      <div class="items-center w-full h-full rounded-lg scrollbar-container">
+        <div class="flex flex-row items-center justify-around px-4 py-3 font-semibold border-b border-gray-100">
+          <div><span class="text-lg mr-6">New Project</span></div>
+        </div>
+        <div class="overflow-y-auto bg-gray-100 m-2">
+          <div class="m-3 text-gray-700 bg-white shadow p-10">
+            <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Title"
+                       name="title"
+                       [(ngModel)]="form.title"
+                       required
+                       minlength="3"
+                       maxlength="20"
+                       #title="ngModel" />
+                <div class="alert-danger" *ngIf="title.errors && f.submitted">
+                  <div *ngIf="title.errors.required">title is required</div>
+                  <div *ngIf="title.errors.minlength">
+                    Title must be at least 3 characters
+                  </div>
+                  <div *ngIf="title.errors.maxlength">
+                    Title must be at most 20 characters
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col text-center">
+                <label>Description</label>
+                <textarea  type="text" 
+                       placeholder="Description"
+                        rows="3"
+                        class="form-control"
+                        name="description"
+                        [(ngModel)]="form.description"
+                        required
+                        minlength="10"
+                        #description="ngModel">
+                </textarea >
+                <div class="alert-danger" *ngIf="description.errors && f.submitted">
+                  <div *ngIf="description.errors.required">description is required</div>
+                  <div *ngIf="description.errors.minlength">
+                    Description must be at least 10 characters
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-3 items-left text-center mt-2 mb-3" >
+                <div class="flex flex-col items-left p-2">
+                    <label>Starting Date</label>
+                    <input type="date"
+                            class="form-control"
+                            name="startingDate"
+                            [(ngModel)]="form.startingDate"
+                            required
+                            #startingDate="ngModel" />
+                    <div class="alert-danger" *ngIf="startingDate.errors && f.submitted">
+                      <div *ngIf="startingDate.errors.required">Starting Date is required</div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-left p-2">
+                    <label>Estimated Time</label>
+                    <input type="time"
+                            class="form-control"
+                            name="estimatedTime"
+                            [(ngModel)]="form.estimatedTime"
+                            required
+                            #estimatedTime="ngModel" />
+                    <div class="alert-danger" *ngIf="estimatedTime.errors && f.submitted">
+                      <div *ngIf="estimatedTime.errors.required">Estimated Time is required</div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-left p-2">
+                    <label>Time Spent</label>
+                    <input type="time"
+                            class="form-control"
+                            name="timeSpent"
+                            [(ngModel)]="form.timeSpent"
+                            required
+                            #timeSpent="ngModel" />
+                    <div class="alert-danger" *ngIf="timeSpent.errors && f.submitted">
+                      <div *ngIf="timeSpent.errors.required">Time Spent is required</div>
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button class="inline-flex px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md float-right" *ngIf="tabvalue=='new_project'">Save</button>
+                <button class="inline-flex px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md float-right" *ngIf="tabvalue=='edit'">Edit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Panel-->
+  <!-- Panel no project info-->
+  <div *ngIf="tabvalue==''" class="w-full bg-white shadow rounded-lg">
+    <div class="text-center px-4 py-3 font-semibold border-b border-gray-100">
+      <span class="text-lg">Please select a project to see more about</span>
+    </div>
+    <img class="w-1/3 mx-auto lg:mr-0 slide-in-botto" src="../assets/search-purple.svg">
+  </div>
+  <!-- End Panel-->
+</section>

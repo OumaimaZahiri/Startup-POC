@@ -1,0 +1,93 @@
+<mat-dialog-content class="mat-typography">
+    <div class="container flex justify-center flex-col items-center w-full px-50 py-56 p-15 text-purple-600 
+    bg-purple-100 border border-purple-600 rounded-lg h-80 pb-1 overflow-y-auto scrollbar-container z-5">
+        <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-white rounded-full mr-6">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+        </div>
+        <form *ngIf="!isSuccessful"
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
+              novalidate>
+          <div class="form-group" >
+            <label for="title">Title</label>
+            <input type="text"
+                   placeholder="Title"
+                   class="form-control"
+                   name="title"
+                   [(ngModel)]="form.title"
+                   required
+                   minlength="3"
+                   maxlength="20"
+                   #title="ngModel" />
+            <div class="alert-danger" *ngIf="title.errors && f.submitted">
+              <div *ngIf="title.errors.required">Title is required</div>
+              <div *ngIf="title.errors.minlength">
+                Title must be at least 3 characters
+              </div>
+              <div *ngIf="title.errors.maxlength">
+                Title must be at most 20 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text"
+                   placeholder="Description"
+                   class="form-control"
+                   name="description"
+                   [(ngModel)]="form.description"
+                   required
+                   #description="ngModel" />
+            <div class="alert-danger" *ngIf="description.errors && f.submitted">
+              <div *ngIf="description.errors.required">Description is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="startingDate">Starting Date</label>
+            <input type="date"
+                   class="form-control"
+                   name="startingDate"
+                   [(ngModel)]="form.startingDate"
+                   required
+                   #startingDate="ngModel" />
+          </div>
+          <div class="form-group">
+            <label for="estimatedTime">Estimated Time</label>
+            <input type="time"
+                   class="form-control"
+                   name="estimatedTime"
+                   [(ngModel)]="form.estimatedTime"
+                   required
+                   #estimatedTime="ngModel" />
+            <div class="alert-danger" *ngIf="estimatedTime.errors && f.submitted">
+              <div *ngIf="estimatedTime.errors.required">Estimated time is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="timeSpent">Time Spent</label>
+            <input type="time"
+                   class="form-control"
+                   name="timeSpent"
+                   [(ngModel)]="form.timeSpent"
+                   value=0
+                   #timeSpent="ngModel" />
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" *ngIf="type!='edit'">Add project</button>
+            <button class="btn btn-primary btn-block" *ngIf="type=='edit'">Edit</button>
+          </div>
+    
+          <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Signup failed!<br />{{ errorMessage }}
+          </div>
+        </form>
+    
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          This project has been added successfully!
+        </div>
+    </div>
+    </mat-dialog-content>
